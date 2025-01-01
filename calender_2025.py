@@ -1,20 +1,29 @@
 import calendar
+from rich.console import Console
+from rich.table import Table
 
-year = 2025
-calendar.setfirstweekday(calendar.MONDAY)
-week_number = 1
+def colorful_calendar(year):
+    console = Console()
+    months = [calendar.monthcalendar(year, month) for month in range(1, 13)]
 
-print(f"Kalender Tahun {year}\n")
+    for month in range(12):
+        month_name = calendar.month_name[month + 1]
 
-for month in range(1, 13):
-    print(f"\n{calendar.month_name[month]}")
-    print("W    Sen   Sel   Rab   Kam   Jum   Sab   Min")
+        table = Table(title=f"[bold cyan]Bulan {month_name} \
+        Tahun  {year} [/bold cyan]", show_lines=True)
 
-    month_cal = calendar.monthcalendar(year, month)
+        table.add_column("Sen", justify="center", style="white")
+        table.add_column("Sel", justify="center", style="white")
+        table.add_column("Rab", justify="center", style="white")
+        table.add_column("Kam", justify="center", style="white")
+        table.add_column("Jum", justify="center", style="white")
+        table.add_column("Sab", justify="center", style="red")
+        table.add_column("Ming", justify="center", style="red")
 
-    for W in month_cal:
-        week_with_week = [f"W{week_number:02d}"]
-        week_with_week += [f"{day:2}" if day != 0 else "  " for day in W]
-        print("   ".join(week_with_week))
+        for week in months[month]:
+            table.add_row(*[str(day) if day != 0 else "" for day in week])
 
-        week_number += 1
+            console.print(table)
+            console.print("\n")
+if __name__ == "__main__":
+    colorful_calendar(2025)
