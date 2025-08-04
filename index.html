@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue.js Dasar</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+      }
+      input {
+        padding: 6px;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1><center>Belajar Vue.js Dasar</center></h1>
+      <div id="apk">
+      <input v-model="name" placeholder="Masukkan nama anda" />
+      <p v-if="name">Anyeonghaseo, {{ name }}!</p>
+      <p v-else>Silahkan ketik namamu di atas.</p>
+      <h4>Kata-kata hari ini:</h4>
+     <p>{{ pesan }}</p>
+    </div>
+    <script src="code.js"></script>
+  </body>
+</html>
